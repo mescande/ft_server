@@ -1,21 +1,27 @@
 server {
-    listen 140;
-    server_name ft_server www.localhost;
+    listen 140 defaultserver;
+	listen [::]:140 defaultserver ipv6only=on;
+	server_name 0.0.0.0:140;
     root /var/www/localhost;
 
-    index index.html index.htm index.php;
+    index index.php index.html index.htm;
 
     location / {
-        try_files $uri $uri/ =404;
+#		try_files $uri $uri/ =404;
+		try_files $uri $uri/ /index.php?q=$uri&$args;
+    }
+	error_page 404 /404.html;
+
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+            root /usr/share/nginx/html;
     }
 
     location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-     }
-
-    location ~ /\.ht {
-        deny all;
+            try_files $uri =404;
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass unix:/var/run/php5-fpm.sock;
+            fastcgi_index index.php;
+            include fastcgi_params;
     }
-
 }
