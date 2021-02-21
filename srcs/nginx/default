@@ -19,14 +19,20 @@
 # Default server configuration
 #
 server {
-	listen 140 default_server;
-	listen [::]:140 default_server;
+#	listen 140 default_server;
+#	listen [::]:140 default_server;
 
 	# SSL configuration
-	#
-	# listen 443 ssl default_server;
-	# listen [::]:443 ssl default_server;
-	#
+	
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
+
+	include snippets/ft_server.conf;
+	include snippets/ssl-params.conf;
+
+#	ssl_certificate     localhost.crt;
+#	ssl_certificate_key localhost.key;
+	
 	# Note: You should disable gzip for SSL traffic.
 	# See: https://bugs.debian.org/773332
 	#
@@ -75,17 +81,17 @@ server {
 #
 # You can move that to a different file under sites-available/ and symlink that
 # to sites-enabled/ to enable it.
-#
-#server {
-#	listen 80;
-#	listen [::]:80;
-#
-#	server_name example.com;
-#
-#	root /var/www/example.com;
-#	index index.html;
-#
-#	location / {
-#		try_files $uri $uri/ =404;
-#	}
-#}
+
+server {
+	listen 140;
+	listen [::]:140;
+
+	server_name ft_server;
+
+	root /var/www/html;
+	index index.php index.html;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}

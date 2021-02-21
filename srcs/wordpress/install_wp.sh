@@ -4,5 +4,5 @@ wget http://wordpress.org/latest.tar.gz
 tar xzvf latest.tar.gz
 rm latest.tar.gz
 mkdir wordpress/wp-content/uploads
-mv /wp-config.php ./wordpress/
+mv /ft_server/wordpress/wp-config.php ./wordpress/
 chown -R :www-data /var/www/localhost
