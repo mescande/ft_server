@@ -19,8 +19,8 @@
 # Default server configuration
 #
 server {
-#	listen 140 default_server;
-#	listen [::]:140 default_server;
+#	listen 80 default_server;
+#	listen [::]:80 default_server;
 
 	# SSL configuration
 	
@@ -54,6 +54,7 @@ server {
 	location / {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
+		autoindex on;
 		try_files $uri $uri/ =404;
 	}
 
@@ -83,8 +84,8 @@ server {
 # to sites-enabled/ to enable it.
 
 server {
-	listen 140;
-	listen [::]:140;
+	listen 80;
+	listen [::]:80;
 
 	server_name ft_server;
 

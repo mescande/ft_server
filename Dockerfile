@@ -4,7 +4,7 @@ MAINTAINER Matthieu Escande mescande@student.42.fr
 RUN mkdir /ft_server
 WORKDIR /ft_server
 
-EXPOSE 140
+EXPOSE 80
 EXPOSE 443
 
 RUN apt update
