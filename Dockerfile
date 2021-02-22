@@ -25,15 +25,12 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-lang
 RUN tar xvzf phpMyAdmin-5.0.4-all-languages.tar.gz
 RUN rm phpMyAdmin-5.0.4-all-languages.tar.gz
 RUN cp -avr ./phpMyAdmin-5.0.4-all-languages/. /usr/share/phpmyadmin
-#RUN rm -r phpMyAdmin-5.0.4-all-languages
 RUN ln -s /usr/share/phpmyadmin/ /var/www/localhost/phpmyadmin
-#RUN chown -R :www-data /var/www/localhost/wordpress/phpmyadmin
 
 ADD ./srcs/ ./
 RUN cp .vimrc /root/.vimrc
 RUN cp -r .vim /root/.vim
-#
-#COPY ./srcs/nginx/nginx.conf /etc/nginx/nginx.conf
+
 RUN cp nginx/default /etc/nginx/sites-available/default
 RUN mkdir /var/www/localhost/nginx
 RUN mv /var/www/html/* /var/www/localhost/nginx/index.html
@@ -43,4 +40,3 @@ RUN ln -s /var/www/localhost/ /var/www/html
 RUN cp ssl/ft_server.conf ssl/ssl-params.conf /etc/nginx/snippets/
 
 CMD ./CMD.sh 
-#a changer pour la correction
