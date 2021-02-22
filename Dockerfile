@@ -19,7 +19,7 @@ ADD srcs/wordpress ./wordpress/
 COPY srcs/ssl/ssl.conf ./ssl.conf
 RUN ./wordpress/install_wp.sh
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ft_server.key -out /etc/ssl/certs/ft_server.crt < ssl.conf
-RUN openssl dhparam -out /etc/nginx/dhparam.pem 4096
+RUN openssl dhparam -out /etc/nginx/dhparam.pem 256
 
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz
 RUN tar xvzf phpMyAdmin-5.0.4-all-languages.tar.gz
