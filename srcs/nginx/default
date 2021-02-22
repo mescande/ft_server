@@ -19,13 +19,13 @@
 # Default server configuration
 #
 server {
-#	listen 80 default_server;
-#	listen [::]:80 default_server;
+	listen 80;
+	listen [::]:80;
 
 	# SSL configuration
 	
-	listen 443 ssl default_server;
-	listen [::]:443 ssl default_server;
+	listen 443 default_server ssl;
+	listen [::]:443 default_server ssl;
 
 	include snippets/ft_server.conf;
 	include snippets/ssl-params.conf;
@@ -82,17 +82,17 @@ server {
 #
 # You can move that to a different file under sites-available/ and symlink that
 # to sites-enabled/ to enable it.
-
-server {
-	listen 80;
-	listen [::]:80;
-
-	server_name ft_server;
-
-	root /var/www/html;
-	index index.php index.html;
-
-	location / {
-		try_files $uri $uri/ =404;
-	}
-}
+#
+#server {
+#	listen 80;
+#	listen [::]:80;
+#
+#	server_name ft_server;
+#
+#	root /var/www/html;
+#	index index.php index.html;
+#
+#	location / {
+#		try_files $uri $uri/ =404;
+#	}
+#}
